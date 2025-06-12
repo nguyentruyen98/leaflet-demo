@@ -29,7 +29,7 @@ const Map = () => {
       [1000, 1000],
     ] as LatLngBoundsExpression;
     imageOverlay(EXAMPLE_URL, bounds).addTo(mapNe);
-    mapNe.fitBounds(bounds);
+    mapNe.fitBounds(bounds).setMaxBounds(bounds);
 
     polygon(
       [
@@ -42,17 +42,25 @@ const Map = () => {
         color: "red",
         fillColor: "#f03",
         fillOpacity: 0.5,
+        weight: 2,
       }
     )
       .bindPopup(PolygonPopup())
+      .bindTooltip("This is a polygon", {
+        permanent: true,
+        direction: "center",
+        className: "polygon-label",
+        opacity: 1,
+      })
       .addTo(mapNe);
-
+    mapNe.attributionControl.setPrefix(false); // Bỏ chữ "Leaflet"
+    mapNe.attributionControl.addAttribution(""); // Xóa attribution khác nếu muốn
     return () => {
       mapNe.remove();
     };
   }, []);
 
-  return <div className="h-96 w-96" id="map"></div>;
+  return <div className="h-[1000px] w-[1000px]" id="map"></div>;
 };
 
 export default Map;
