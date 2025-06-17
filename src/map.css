@@ -664,6 +664,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   background-color: transparent;
   color: #000;
   font-weight: 400;
+  font-size: 8px;
   border: none;
   box-shadow: none;
 }
